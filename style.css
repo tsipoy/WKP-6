@@ -2,7 +2,13 @@ html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.food-list {
+.card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.food-list,
+.your-order {
     background-color: gainsboro;
     max-width: 50%;
     padding: 2rem;
@@ -12,8 +18,12 @@ form {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 }
+
+label {
+    padding-inline-end: 2rem;
+}
+
 
 
 p {
@@ -26,5 +36,41 @@ ul {
     flex-direction: row;
     justify-content: space-between;
     padding-inline-start: 0;
+}
+
+button {
+    border-radius: 5px;
+}
+
+.confirm-button {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    margin-block-start: 1rem;
+    max-width: 100%;
+}
+
+.outer-modal {
+	display: grid;
+	place-items: center center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: hsla(0, 0%, 0%, 0.7);
+	pointer-events: none;
+	opacity: 0;
+}
+
+.outer-modal.open {
+	pointer-events: all;
+	opacity: 1;
+}
+
+.inner-modal {
+	background-color: white;
+	min-width: 300px;
+	min-height: 300px;
 }
 
