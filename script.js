@@ -66,19 +66,22 @@ const handleSubmit = e => {
     list.dispatchEvent(new CustomEvent('itemsUpdated'));
 };
 
-const displayListFood = () => {
-        const foodListHtml = foods.map(food => `
+const displayListFood = (arr) => {
+        return arr.map(food => {
+           const foodListHtml= `
         <div class="recipe">
             <ul>
-                <li>${food.titile}</li>
+                <li>${food.title}</li>
                 <li>${food.price}</li>
             </ul>
             <button class="add-button">Add</button>
         </div>
-    `)
-    recipeList.innerHTML = foodListHtml;
-    displayListFood();
+    `;
+    recipeList.insertAdjacentHTML('afterbegin', foodListHtml);
+        });
 };
+displayListFood(foods);
+
 
 const openModal = (event) => {
 	outerModal.classList.add('open');
