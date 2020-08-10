@@ -46,6 +46,8 @@ const foodList = document.querySelector('.food-list');
 const spicyOrder = document.querySelector('#spicy-list');
 const VegetarianOrder = document.querySelector('#vegetarian-list');
 const recipeList = document.querySelector('.recipe');
+const orderList = document.querySelector('.order');
+
 
 const handleSubmit = e => {
     e.preventDefault();
@@ -67,34 +69,63 @@ const handleSubmit = e => {
 };
 
 const displayListFood = (arr) => {
-        return arr.map(food => {
-           const foodListHtml= `
+    return arr.map(food => {
+        const foodListHtml = `
         <div class="recipe">
             <ul>
                 <li>${food.title}</li>
                 <li>${food.price}</li>
+                <li><button class="add-button">Add</button></li>
             </ul>
-            <button class="add-button">Add</button>
         </div>
     `;
-    recipeList.insertAdjacentHTML('afterbegin', foodListHtml);
-        });
+        recipeList.insertAdjacentHTML('afterbegin', foodListHtml);
+    });
 };
 displayListFood(foods);
 
+const addFoods = (arr) => {
+    const addHtml = `
+    <div class="order">
+    <li>${arr.title}</li>
+    <li>${arr.map(price => price * 2)}</li>
+    </div>
+    `;
+    orderList.innerHTML = addHtml;
+}
 
-const openModal = (event) => {
-	outerModal.classList.add('open');
-	const myNewHtml = `
-		<div class="newRecipe">
-            <h2>Thank you!</h2>
-            <p>Your order is confirmed. We will prepare your food, and deliver it to you when it's ready</p>
-            <p>The total amount is 20000 Ar.</p>
-            <button>Close</button>
-		</div>
-	`;
-	innerModal.innerHTML = myNewHtml;
+// Open modal
+console.log(outerModal);
+const openModal = event => {
+    event.preventDefault();
+    outerModal.classList.add('open');
+        const myNewHtml = `
+	    	<div class="newRecipe">
+                <h2>Thank you!</h2>
+                <p>Your order is confirmed. We will prepare your food, and deliver it to you when it's ready</p>
+                <p>The total amount is 20000 Ar.</p>
+                <button class="close-button">Close</button>
+	    	</div>
+	    `;
+        innerModal.innerHTML = myNewHtml;
 };
 
+// Close modal
+const closeModal = event => {
+	const isOutside = !event.target.closest('.inner-modal');
+	if (isOutside) {
+		outerModal.classList.remove('open');
+	}
+};
+
+// Escape modal
+const escapeModal = event => {
+	if (event.key === 'Escape') {
+		outerModal.classList.remove('open');
+	}
+}
+
 confirmOrder.addEventListener('click', openModal);
+outerModal.addEventListener('click', closeModal);
+window.addEventListener('keydown', escapeModal);
 

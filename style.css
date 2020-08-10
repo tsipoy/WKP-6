@@ -12,6 +12,7 @@ html {
     background-color: gainsboro;
     max-width: 50%;
     padding: 2rem;
+    border-radius: 5px;
 }
 
 form {
@@ -42,7 +43,8 @@ button {
     border-radius: 5px;
 }
 
-.confirm-button {
+.confirm-button,
+.close-button {
     background-color: black;
     color: white;
     padding: 1rem;
@@ -69,8 +71,14 @@ button {
 }
 
 .inner-modal {
-	background-color: white;
 	min-width: 300px;
 	min-height: 300px;
+}
+
+.newRecipe {
+    background-color: gainsboro;
+    max-width: 50%;
+    padding: 2rem;
+    border-radius: 5px;
 }
 
